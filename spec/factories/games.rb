@@ -17,7 +17,13 @@ FactoryGirl.define do
     player
     other_player
     sequence(:date) { Faker::Date.between(5.years.ago, Date.today) }
-    sequence(:player_score) { Random.rand(22) }
-    sequence(:other_player_score) { Random.rand(3) + 21 }
+    sequence(:player_score) { Random.rand(25) }
+    sequence(:other_player_score) do
+      if player_score == 21
+        Random.rand(20)
+      else
+        player_score > 19 ? player_score + 2 : 21
+      end
+    end
   end
 end
