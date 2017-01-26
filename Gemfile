@@ -14,6 +14,8 @@ gem 'devise-bootstrap-views', '~> 0.0.6'
 group :development, :test do
   gem 'annotate'
   gem 'byebug'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'spring'
