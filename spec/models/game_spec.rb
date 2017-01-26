@@ -41,5 +41,16 @@ RSpec.describe Game, type: :model do
 
   end
 
-  
+  describe "#update_stats" do
+
+    it "increments the players' games played" do
+      player_games = game.player.games_played
+      other_player_games = game.other_player.games_played
+      game.update_stats
+      expect(game.player.games_played).to eq(player_games + 1)
+      expect(game.other_player.games_played).to eq(other_player_games + 1)
+    end
+
+  end
+
 end
