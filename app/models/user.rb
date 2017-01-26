@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
     class_name: 'Game',
     foreign_key: :other_player_id
 
+  def self.users_by_rating
+    User.order('rating DESC')
+  end
+
   def game_history
     Game
       .where("games.player_id = ? OR games.other_player_id = ?", id, id)

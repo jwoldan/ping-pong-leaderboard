@@ -2,4 +2,25 @@
 
 <div class="alert alert-warning" role="alert">This is a sample page.</div>
 
-<%= image_tag('leaderboard.png') %>
+<table class="table table-striped">
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Score</th>
+    <th>Games Played</th>
+  </tr>
+  <% last_rating = @users.first.rating
+    rank = 1
+    @users.each do |user|
+      if user.rating < last_rating
+        rank += 1
+        last_rating = user.rating
+      end %>
+      <tr>
+        <td><%= rank %></td>
+        <td><%= user.email %></td>
+        <td><%= user.rating %></td>
+        <td>FILL IN</td>
+      </tr>
+  <% end %>
+</table>
