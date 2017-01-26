@@ -49,4 +49,23 @@ class Game < ActiveRecord::Base
             :date,
             presence: true
 
+  validate :valid_score
+
+  belongs_to :player,
+    class_name: 'User'
+
+  belongs_to :other_player,
+    class_name: 'User'
+
+  private
+
+  def valid_score
+    if (player_score.nil? || other_player_score.nil?) ||
+        (player_score < 21 && other_player_score < 21) ||
+        (player_score - other_player_score).abs < 2
+      errors.add(:player_score, "Not a valid final score")
+      errors.add(:other_player_score, "Not a valid final score")
+    end
+  end
+
 end
