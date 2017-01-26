@@ -1,16 +1,23 @@
 class GamesController < ApplicationController
 
   def new
-    @opponents = User.where.not(id: current_user.id)
-    @months = Game::MONTHS
-    today = Date.today
-    @current_month = today.month
-    @current_day = today.day
-    @current_year = today.year
+    @game = Game.new
     render :new
   end
 
   def create
+    @game = Game.new(game_params)
+    @game.player = current_user
+    @game.date = Date.new(
+      params[:game][:year].to_i,
+      params[:game][:month].to_i,
+      params[:game][:day].to_i
+    )
+    if @game.save
+      redirect_to "/"
+    else
+      render :new
+    end
   end
 
   private
@@ -22,10 +29,7 @@ class GamesController < ApplicationController
         :player_id,
         :other_player_id,
         :player_score,
-        :other_player_score,
-        :month,
-        :day,
-        :year
+        :other_player_score
       )
   end
 
