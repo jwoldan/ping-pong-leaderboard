@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  id                 :integer          not null, primary key
+#  player_id          :integer          not null
+#  other_player_id    :integer          not null
+#  player_score       :integer          not null
+#  other_player_score :integer          not null
+#  date               :date             not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
 FactoryGirl.define do
   factory :game do
     player

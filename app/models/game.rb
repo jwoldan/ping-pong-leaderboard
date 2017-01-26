@@ -57,6 +57,24 @@ class Game < ActiveRecord::Base
   belongs_to :other_player,
     class_name: 'User'
 
+  def update_player_ratings
+    k_value = 32
+    if player && other_player
+      rating_1 = 10**(player.rating / 400)
+      rating_2 = 10**(other_player.rating / 400)
+      expected_1 = rating_1 / (rating_1 + rating_2)
+      expected_2 = rating_2 / (rating_1 + rating_2)
+      score_1 = player_score > other_player_score ? 1 : 0
+      score_2 = other_player_score > player_score ? 1 : 0
+
+      player.rating = player.rating + k_value * (score_1 - expected_1)
+      player.save
+      other_player.rating =
+        other_player.rating + k_value * (score_2 - expected_2)
+      other_player.save
+    end
+  end
+
   private
 
   def valid_score

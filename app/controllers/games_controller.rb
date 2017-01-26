@@ -2,7 +2,6 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
-    render :new
   end
 
   def create
@@ -14,6 +13,7 @@ class GamesController < ApplicationController
       params[:game][:day].to_i
     )
     if @game.save
+      @game.update_player_ratings
       redirect_to "/"
     else
       render :new
