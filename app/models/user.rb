@@ -24,8 +24,14 @@ class User < ActiveRecord::Base
     class_name: 'Game',
     foreign_key: :player_id
 
-    has_many :received_games,
-      class_name: 'Game',
-      foreign_key: :other_player_id
+  has_many :received_games,
+    class_name: 'Game',
+    foreign_key: :other_player_id
+
+  def game_history
+    Game
+      .where("games.player_id = ? OR games.other_player_id = ?", id, id)
+      .order("date DESC")
+  end
 
 end
