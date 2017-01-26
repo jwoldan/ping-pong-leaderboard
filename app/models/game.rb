@@ -40,7 +40,7 @@ class Game < ActiveRecord::Base
     OCTOBER,
     NOVEMBER,
     DECEMBER
-
+  ].freeze
 
   validates :player_id,
             :other_player_id,
