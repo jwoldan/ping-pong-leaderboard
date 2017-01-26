@@ -13,6 +13,35 @@
 #
 
 class Game < ActiveRecord::Base
+
+  JANUARY = 'January'.freeze
+  FEBRUARY = 'February'.freeze
+  MARCH = 'March'.freeze
+  APRIL = 'April'.freeze
+  MAY = 'May'.freeze
+  JUNE = 'June'.freeze
+  JULY = 'July'.freeze
+  AUGUST = 'August'.freeze
+  SEPTEMBER = 'September'.freeze
+  OCTOBER = 'October'.freeze
+  NOVEMBER = 'November'.freeze
+  DECEMBER = 'December'.freeze
+
+  MONTHS = [
+    JANUARY,
+    FEBRUARY,
+    MARCH,
+    APRIL,
+    MAY,
+    JUNE,
+    JULY,
+    AUGUST,
+    SEPTEMBER,
+    OCTOBER,
+    NOVEMBER,
+    DECEMBER
+
+
   validates :player_id,
             :other_player_id,
             :player_score,
