@@ -8,7 +8,7 @@
 %>
 <h1 class='page-header'>Log Game</h1>
 
-<form class="game-form" action="<%= games_url %>" method="post">
+<form class="game-form" action="<%= log_url %>" method="post">
   <%= auth_token %>
   <div class="form-inline<%= @game.errors[:date].empty? ? "" : " has-error" %>">
     <label for="game-date">Date Played:</label>
