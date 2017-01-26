@@ -13,7 +13,7 @@ class GamesController < ApplicationController
       params[:game][:day].to_i
     )
     if @game.save
-      @game.update_player_ratings
+      @game.update_stats
       redirect_to "/"
     else
       render :new

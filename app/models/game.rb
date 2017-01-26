@@ -57,7 +57,19 @@ class Game < ActiveRecord::Base
   belongs_to :other_player,
     class_name: 'User'
 
-  def update_player_ratings
+  def update_stats
+    increment_games_played
+    update_ratings
+  end
+
+  private
+
+  def increment_games_played
+    player.games_played += 1
+    other_player.games_played += 1
+  end
+
+  def update_ratings
     k_value = 32
     if player && other_player
       rating_1 = 10**(player.rating / 400)
@@ -74,8 +86,6 @@ class Game < ActiveRecord::Base
       other_player.save
     end
   end
-
-  private
 
   def valid_score
     if (player_score.nil? || other_player_score.nil?) ||
