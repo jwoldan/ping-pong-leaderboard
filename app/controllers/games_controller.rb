@@ -7,7 +7,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.player = current_user
-    @game.date = Date.new(
+    @game.try_set_date(
       params[:game][:year].to_i,
       params[:game][:month].to_i,
       params[:game][:day].to_i

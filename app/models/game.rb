@@ -57,6 +57,12 @@ class Game < ActiveRecord::Base
   belongs_to :other_player,
     class_name: 'User'
 
+  def try_set_date(year, month, day)
+    self.date = Date.new(year, month, day)
+  rescue ArgumentError
+    # Just don't set a value, the validation will catch the error
+  end
+
   def update_stats
     increment_games_played
     update_ratings
