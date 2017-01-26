@@ -15,7 +15,8 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  rating                 :integer
+#  rating                 :integer          default(400), not null
+#  games_played           :integer          default(0), not null
 #
 
 class User < ActiveRecord::Base

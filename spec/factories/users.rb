@@ -15,12 +15,15 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  rating                 :integer
+#  rating                 :integer          default(400), not null
+#  games_played           :integer          default(0), not null
 #
 
 FactoryGirl.define do
   factory :user, aliases: [:player, :other_player] do
     sequence(:email) { Faker::Internet.email }
     sequence(:password) { Faker::Internet.password }
+    sequence(:rating) { Faker::Number.number(3) }
+    sequence(:games_played) { Faker::Number.number(2) }
   end
 end
