@@ -1,0 +1,72 @@
+<h1 class='page-header'>Log Game</h1>
+
+<form class="game-form" action="<%= games_url %>" method="post">
+  <%= auth_token %>
+  <div class="form-inline">
+    <label for="game-date">Date Played:</label>
+
+    <select id="game-date" class="form-control" name="month">
+      <% @months.each_with_index do |month, idx|
+        if idx == @current_month %>
+          <option value="<%= idx %>" selected><%= month %></option>
+        <% else %>
+          <option value="<%= idx %>"><%= month %></option>
+        <% end %>
+      <% end %>
+    </select>
+
+    <select class="form-control" name="day">
+      <% (1..31).each do |day| %>
+        <option value="<%= day %>"><%= day %></option>
+      <% end %>
+    </select>
+
+    <select class="form-control" name="year">
+    <% ((@current_year - 4)..@current_year).each do |year|
+      if year < @current_year %>
+        <option value="<%= year %>"><%= year %></option>
+      <% else %>
+        <option value="<%= year %>" selected><%= year %></option>
+      <% end %>
+    <% end %>
+    </select>
+
+  </div>
+
+  <div class="form-group">
+    <label for="select-other-player-id">Opponent:</label>
+
+    <select
+      id="select-other-player-id"
+      class="form-control"
+      name="other_player_id">
+      <% @opponents.each do |opponent| %>
+        <option value="<%= opponent.id %>"><%= opponent.email %></option>
+      <% end %>
+    </select>
+
+  </div>
+
+  <div class="form-group">
+    <label for="input-player-score">Your Score:</label>
+    <input
+      type="number"
+      id="input-player-score"
+      class="form-control"
+      name="player_score" />
+  </div>
+
+  <div class="form-group">
+    <label for="select-other-player-score">Their Score:</label>
+    <input
+      type="number"
+      id="select-other-player-score"
+      class="form-control"
+      name="other_player_score" />
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="btn btn-success" value="Save" />
+    <%= link_to "Cancel", "/" %>
+  </div>
+</form>
