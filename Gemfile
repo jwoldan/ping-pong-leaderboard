@@ -12,8 +12,10 @@ gem 'devise',       '~> 3.5.2'
 gem 'devise-bootstrap-views', '~> 0.0.6'
 
 group :development, :test do
+  gem 'annotate'
   gem 'byebug'
   gem 'pry-rails'
+  gem 'rspec-rails'
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
