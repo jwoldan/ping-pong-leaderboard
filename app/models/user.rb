@@ -19,4 +19,13 @@
 
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :trackable, :validatable
+
+  has_many :entered_games,
+    class_name: 'Game',
+    foreign_key: :player_id
+
+    has_many :received_games,
+      class_name: 'Game',
+      foreign_key: :other_player_id
+
 end
